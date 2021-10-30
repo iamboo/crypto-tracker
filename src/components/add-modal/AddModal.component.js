@@ -103,23 +103,19 @@ export default class AddModalComponent extends React.Component{
 
 		return (<>
 		  <Button variant="outline-info" size="sm" onClick={this.handleOpenModal} title="Manage tracked coins"><span className={'fa fa-cog fa-lg'}></span></Button>
-      <Modal show={this.state.showModal} onHide={this.handleCloseModal}>
-        <Modal.Header>
-          <Modal.Title className={'flex-grow-1'}>Select Crypto</Modal.Title>
+			<Modal show={this.state.showModal} onHide={this.handleCloseModal}>
+				<Modal.Header>
+					<Modal.Title className={'flex-grow-1'}>Select Crypto</Modal.Title>
 					<FilterComponent onFilter={this.filterList} />
-        </Modal.Header>
-        <Modal.Body className={classes['add-modal-body']}>
+				</Modal.Header>
+				<Modal.Body className={classes['add-modal-body']}>
 					<ListGroup variant="flush" className={classes['add-list-group']}>{listItems}</ListGroup>
 				</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={this.handleCloseModal}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={this.updateTracking}>
-            Track Selected
-          </Button>
-        </Modal.Footer>
-      </Modal>
+				<Modal.Footer>
+					<Button variant="secondary" onClick={this.handleCloseModal}>Close</Button>
+					<Button variant="primary" onClick={this.updateTracking}>Track Selected</Button>
+				</Modal.Footer>
+			</Modal>
 			</>
 		)
 	}
