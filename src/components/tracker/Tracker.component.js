@@ -80,7 +80,7 @@ export default class TrackerComponent extends React.Component{
 		});
 
 		return (
-			<div className={'container-md'}>
+			<div className={`${'container'} ${classes['container']} ${classes['tracker-content']}`}>
 				<NoTracking show={this.props.tracking.length === 0} click={this.openAddModal}/>
 				<ListHeader show={this.props.tracking.length > 0} />
 				<ListGroup variant="flush" className={classes['tracking-list-group']}>{listItems}</ListGroup>

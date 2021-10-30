@@ -135,7 +135,7 @@ class App extends React.Component {
 		return (
 			<div className="App">
 				<header className="App-header">
-					<div className={'container-md d-flex flex-row align-items-center'}>
+					<div className={'container d-flex flex-row align-items-center App-header-container'}>
 						<Icon name="GENERIC" size={30} />
 						<p className="App-title">Tracker</p>
 						<TrackerSearch tracking={this.state.tracking} callback={this.filterList} />

@@ -55,3 +55,7 @@
 .tracking-list-empty button{
 	margin-top: 2rem;
 }
+
+.container.tracker-content{
+	max-width: var(--content-max-width);
+}
