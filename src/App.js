@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import TrackerComponent from './components/tracker/Tracker.component';
-import { Spinner } from 'react-bootstrap';
 import AddModalComponent from './components/add-modal/AddModal.component';
 import { cryptoSymbol } from 'crypto-symbol';
 import FilterComponent from './components/filter/Filter.component';
@@ -20,7 +19,7 @@ const Loader = (props) => {
 	if(props.loading){
 		return (
 			<div className="loader">
-				<Spinner animation="border" role="status" />
+				<div className="fa fa-eercast fa-spin"></div>
 				<div className="loading-text">Loading...</div>
 			</div>
 		)
@@ -147,7 +146,8 @@ class App extends React.Component {
 					allCoins={this.state.allCoins}
 					tracking={this.state.tracking}
 					lastRefresh={this.state.lastRefreshDate}
-					doRefresh={this.getCoinPrices} 
+					doRefresh={this.getCoinPrices}
+					loading={this.state.loading}
 					searchTerm={this.state.searchTerm}
 					openAddModal={this.openAddModal}/>
 			</div>

@@ -2,8 +2,18 @@ import React from 'react';
 import { Button, ListGroup, Modal } from 'react-bootstrap';
 import Icon from 'react-crypto-icons';
 import classes from './AddModal.module.css';
-import { CheckSquareFill, GearFill, Square } from 'react-bootstrap-icons';
 import FilterComponent from '../filter/Filter.component';
+
+const Checkbox = (props) => {
+	if(props.tracking){
+		return (
+			<span className={'fa fa-check-square fa-lg'}></span>
+		)
+	}
+	return (
+		<span className={`${'fa fa-square-o fa-lg'} ${classes['unselected']}`}></span>
+	)
+}
 
 export default class AddModalComponent extends React.Component{
 
@@ -72,8 +82,7 @@ export default class AddModalComponent extends React.Component{
 						className={`${classes['list-item']} ${'d-flex'} ${'flex-row'} ${'align-items-center'} ${crypto.selected ? classes['selected'] : ''}`} 
 						onClick={() => this.itemClick(coin.base)}>
 						<span className={classes.checkbox}>
-							{tracking ?
-							<CheckSquareFill size={25} />:<Square size={25} className={classes.unselected}/>}
+							<Checkbox tracking={tracking}/>
 						</span>
 						<Icon name={coin.base.toLowerCase()} size={40} />
 						<span className={`${classes['name-container']} ${'flex-grow-1'}`}>
@@ -93,7 +102,7 @@ export default class AddModalComponent extends React.Component{
 		});
 
 		return (<>
-		  <Button variant="outline-info" size="sm" onClick={this.handleOpenModal} title="Manage tracked coins"><GearFill size={20} /></Button>
+		  <Button variant="outline-info" size="sm" onClick={this.handleOpenModal} title="Manage tracked coins"><span className={'fa fa-cog fa-lg'}></span></Button>
       <Modal show={this.state.showModal} onHide={this.handleCloseModal}>
         <Modal.Header>
           <Modal.Title className={'flex-grow-1'}>Select Crypto</Modal.Title>

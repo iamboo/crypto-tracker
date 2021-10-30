@@ -1,16 +1,15 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 import classes from './Filter.module.css';
-import { Funnel, XCircleFill } from 'react-bootstrap-icons';
 
 const FilterIcon = (props) => {
 	if(props.searchTerm === ''){
 		return (
-			<Funnel className={classes['input-icon']} size={20} />
+			<span className={`${'fa fa-filter'} ${classes['input-icon']}`}></span>
 		)
 	}
 	return (
-		<XCircleFill className={`${classes['input-icon']} ${classes['input-dirty']}`} size={20} onClick={props.click}/>
+		<span className={`${'fa fa-times'} ${classes['input-dirty']} ${classes['input-icon']}`} onClick={props.click}></span>
 	)
 }
 

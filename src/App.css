@@ -36,7 +36,7 @@
 }
 
 .loader{
-  background: rgba(255,255,255,0.8);
+  background: #fff;
   left: calc(50% - 5rem);
 	margin: 5rem auto;
 	padding: 1rem;
@@ -47,8 +47,11 @@
   z-index: 1000;
 }
 
-.spinner-border{
+.fa-spin{
 	color: rgba(0,0,0,.25);
+  font-size: 3rem;
+  -webkit-animation: fa-spin 1.5s infinite linear;
+  animation: fa-spin 1.5s infinite linear;
 }
 
 .container.App-header-container{
