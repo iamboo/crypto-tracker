@@ -1,0 +1,46 @@
+.add-modal-body{
+	height: calc(100vh - 230px);
+	position: relative;
+}
+
+.add-list-group{
+	bottom: 0px;
+	left: 0px;
+	position: absolute;
+	overflow: auto;
+	right: 0px;
+	top: 0px;
+}
+
+.list-item:hover{
+	background-color: rgba(0,10,20,.03);
+	cursor: pointer;
+}
+
+.coin-name{
+	display: block;
+	font-size: .7rem;
+}
+
+.name-container{
+	padding-left: 1rem;
+}
+
+.checkbox{
+	color: #0d6efd;
+	padding-right: 1rem;
+}
+
+.unselected{
+	color: rgba(0,0,0,.2);
+}
+
+.list-item.selected{
+	background: rgba(229, 238, 253, 0.6);
+}
+
+.list-item.selected:hover{
+	background: rgba(229, 238, 253, 0.9);
+}
+
+

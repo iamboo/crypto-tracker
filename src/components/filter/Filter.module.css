@@ -1,0 +1,19 @@
+.input-icon{
+	color: rgba(0,0,0,.2);
+	pointer-events: none;
+	position: absolute;
+	right: 0.6rem;
+	top: calc(50% - 10px);
+	z-index: 11;
+}
+
+.input-icon.input-dirty{
+	color: #cc0000;
+	cursor: pointer;
+	pointer-events: unset;
+}
+
+.filter-form-group{
+	position: relative;
+	width: 10rem;
+}

@@ -1,0 +1,57 @@
+.name-container{
+	padding-left: 1rem;
+}
+
+.coin-name{
+	display: block;
+	font-size: .7rem;
+}
+
+.list-header{
+	background: #fff;
+	border-bottom: 2px solid #ddd;
+	font-weight: 800;
+	padding: 0.5rem 1rem;
+	position: sticky;
+	top: 4rem;
+	z-index: 5;
+}
+
+.list-header span{
+	padding-top: 1rem;
+}
+
+.header-coin{
+	padding-left: 3.4rem;
+}
+
+.tracking-list-group{
+	padding-top: 4rem;
+}
+
+.date-refresh{
+	background: #fff;
+	bottom: 0px;
+	padding: .5rem 0;
+	position: sticky;
+}
+
+.last-refresh{
+	color: #aaa;
+	font-size: .8rem;
+	padding-left: 1rem;
+}
+
+.last-refresh span{
+	display: inline-block;
+	padding-right: .5rem;
+}
+
+.tracking-list-empty{
+	padding-top: 10rem;
+	text-align: center;
+}
+
+.tracking-list-empty button{
+	margin-top: 2rem;
+}
