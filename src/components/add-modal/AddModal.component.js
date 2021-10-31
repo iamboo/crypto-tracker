@@ -1,19 +1,7 @@
 import React from 'react';
-import { Button, ListGroup, Modal } from 'react-bootstrap';
-import Icon from 'react-crypto-icons';
 import classes from './AddModal.module.css';
 import FilterComponent from '../filter/Filter.component';
-
-const Checkbox = (props) => {
-	if(props.tracking){
-		return (
-			<span className={'fa fa-check-square fa-lg'}></span>
-		)
-	}
-	return (
-		<span className={`${'fa fa-square-o fa-lg'} ${classes['unselected']}`}></span>
-	)
-}
+import DataRowComponent from '../data-row/DataRow.component';
 
 export default class AddModalComponent extends React.Component{
 
@@ -24,12 +12,17 @@ export default class AddModalComponent extends React.Component{
 		searchTerm: ''
 	}
 
+
+	// myModal = new bootstrap.Modal(document.getElementById('test-modal'));
+
 	constructor(props) {
 		super(props);
 		this.handleOpenModal = this.handleOpenModal.bind(this);
 		this.handleCloseModal = this.handleCloseModal.bind(this);
 		this.filterList = this.filterList.bind(this);		
-		this.updateTracking = this.updateTracking.bind(this);		
+		this.updateTracking = this.updateTracking.bind(this);
+		this.modalClick = this.modalClick.bind(this);
+		this.modalRef = React.createRef();	
 	}
 
 	handleOpenModal() {
@@ -46,10 +39,13 @@ export default class AddModalComponent extends React.Component{
 			tracking: this.props.tracking,
 			searchTerm: ''
 		});
+		this.modalRef.current.style.display = 'block';
+		this.modalRef.current.classList.add(['fade', 'show']); 
 	};
 
 	handleCloseModal() {
-		this.setState({showModal: false});
+		this.modalRef.current.style.display = 'none';
+		this.modalRef.current.classList.remove(['fade', 'show']); 
 	};
 
 	filterList(searchTerm){
@@ -71,6 +67,12 @@ export default class AddModalComponent extends React.Component{
 		this.handleCloseModal();
 	}
 
+	modalClick(event){
+		if(event.target === this.modalRef.current){
+			this.handleCloseModal();
+		}
+	}
+
 	render(){
 		const searchTerm = this.state.searchTerm;
 		const listItems = this.state.allCoins.map((coin, index) => {
@@ -78,44 +80,31 @@ export default class AddModalComponent extends React.Component{
 			const show = searchTerm === '' || coin.base.toLowerCase().includes(searchTerm) || (coin.name && coin.name.toLowerCase().includes(searchTerm));
 			if(show){
 				return (
-					<ListGroup.Item key={index} 
-						className={`${classes['list-item']} ${'d-flex'} ${'flex-row'} ${'align-items-center'} ${crypto.selected ? classes['selected'] : ''}`} 
-						onClick={() => this.itemClick(coin.base)}>
-						<span className={classes.checkbox}>
-							<Checkbox tracking={tracking}/>
-						</span>
-						<Icon name={coin.base.toLowerCase()} size={40} />
-						<span className={`${classes['name-container']} ${'flex-grow-1'}`}>
-							<b>{coin.base}</b>
-							<small className={classes['coin-name']}>{coin.name}</small>
-						</span>
-						{new Intl.NumberFormat('en-US', {
-							style: 'currency',
-							currency: 'USD',
-							minimumFractionDigits: 2,
-							maximumFractionDigits: 4
-						}).format(coin.amount)}
-					</ListGroup.Item>
+					<DataRowComponent key={index} coin={coin} click={() => this.itemClick(coin.base)} tracking={tracking} />
 				)
 			}
 			return null;
 		});
 
 		return (<>
-		  <Button variant="outline-info" size="sm" onClick={this.handleOpenModal} title="Manage tracked coins"><span className={'fa fa-cog fa-lg'}></span></Button>
-			<Modal show={this.state.showModal} onHide={this.handleCloseModal}>
-				<Modal.Header>
-					<Modal.Title className={'flex-grow-1'}>Select Crypto</Modal.Title>
-					<FilterComponent onFilter={this.filterList} />
-				</Modal.Header>
-				<Modal.Body className={classes['add-modal-body']}>
-					<ListGroup variant="flush" className={classes['add-list-group']}>{listItems}</ListGroup>
-				</Modal.Body>
-				<Modal.Footer>
-					<Button variant="secondary" onClick={this.handleCloseModal}>Close</Button>
-					<Button variant="primary" onClick={this.updateTracking}>Track Selected</Button>
-				</Modal.Footer>
-			</Modal>
+			<button type="button" className={'btn btn-sm btn-outline-info'} onClick={this.handleOpenModal} title="Manage tracked coins"><span className={'fa fa-cog fa-lg'}></span></button>
+			<div className="modal" tabIndex="-1" ref={this.modalRef} role="dialog" aria-hidden="true" onClick={this.modalClick}>
+				<div className="modal-dialog">
+					<div className="modal-content">
+						<div className={'modal-header'}>
+							<h5 className={'modal-title flex-grow-1'}>Select Crypto</h5>
+							<FilterComponent onFilter={this.filterList} />
+						</div>
+						<div className={`${classes['add-modal-body']} ${'modal-body'}`}>
+							<div className={`${'list-group list-group-flush'} ${classes['add-list-group']}`}>{listItems}</div>
+						</div>
+						<div className={'modal-footer'}>
+							<button type="button" className={'btn btn-secondary'} onClick={this.handleCloseModal}>Close</button>
+							<button type="button" className={'btn btn-primary'} onClick={this.updateTracking}>Track Selected</button>
+						</div>
+					</div>
+				</div>
+			</div>
 			</>
 		)
 	}

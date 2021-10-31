@@ -5,10 +5,8 @@
 .App-header {
   align-items: center;
   background-color: #282c34;
-  color: white;
   display: flex;
   flex-direction: row;
-  font-size: calc(10px + 2vmin);
   height: 4rem;
   position: fixed;
   top: 0px;
@@ -16,17 +14,16 @@
   z-index: 10;
 }
 
-.App-header p{
-  flex-grow: 1;
-  padding-left: .5rem;
-}
-
 .App-header .btn{
   margin-left: 1rem;
 }
 
 .App-title{
+  color: white;
+  flex-grow: 1;
+  font-size: calc(10px + 2vmin);
   margin-bottom: 0px;
+  padding-left: .5rem;
 }
 
 .App-link {

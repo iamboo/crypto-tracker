@@ -1,6 +1,5 @@
 import React from 'react';
-import { Button, ListGroup } from 'react-bootstrap';
-import Icon from 'react-crypto-icons';
+import DataRowComponent from '../data-row/DataRow.component';
 import classes from './Tracker.module.css';
 
 const LastDateRefresh = (props) => {
@@ -9,7 +8,7 @@ const LastDateRefresh = (props) => {
 	}
 	return (
 		<div className={`${'d-flex'} ${'flex-row'} ${'align-items-center'} ${'border-top'} ${classes['date-refresh']}`}>
-			<Button variant="secondary" size="sm" className={'text-nowrap'} onClick={props.click}>Update Prices</Button>
+			<button type="button" className={'btn btn-sm btn-secondary text-nowrap'} onClick={props.click}>Update Prices</button>
 			<small className={classes['last-refresh']}>
 				<span>Last update:</span>
 				<span>{new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeStyle: 'medium' }).format(props.lastDate)}</span>
@@ -37,7 +36,7 @@ const NoTracking = (props) => {
 	return (
 		<div className={classes['tracking-list-empty']}>
 			No Cryptos are currently selected for price tracking.<br/>
-			<Button variant="info" size="lg" onClick={props.click}>Begin Tracking</Button>
+			<button type="button" className={'btn btn-lg btn-info'} onClick={props.click}>Begin Tracking</button>
 		</div>
 	)
 }
@@ -61,19 +60,7 @@ export default class TrackerComponent extends React.Component{
 			const show = searchTerm === '' || coin.base.toLowerCase().includes(searchTerm) || (coin.name && coin.name.toLowerCase().includes(searchTerm));
 			if(this.props.tracking.includes(coin.base) && show){
 				return (
-					<ListGroup.Item key={index} className={'d-flex flex-row align-items-center'}>
-						<Icon name={coin.base.toLowerCase()} size={40} />
-						<span className={`${classes['name-container']} ${'flex-grow-1'}`}>
-							<b>{coin.base}</b>
-							<small className={classes['coin-name']}>{coin.name}</small>
-						</span>
-						{new Intl.NumberFormat('en-US', {
-							style: 'currency',
-							currency: 'USD',
-							minimumFractionDigits: 2,
-							maximumFractionDigits: 4
-						}).format(coin.amount)}
-					</ListGroup.Item>
+					<DataRowComponent key={index} coin={coin} />
 				)
 			}
 			return null
@@ -83,7 +70,7 @@ export default class TrackerComponent extends React.Component{
 			<div className={`${'container'} ${classes['container']} ${classes['tracker-content']}`}>
 				<NoTracking show={this.props.tracking.length === 0 && !this.props.loading} click={this.openAddModal}/>
 				<ListHeader show={this.props.tracking.length > 0} />
-				<ListGroup variant="flush" className={classes['tracking-list-group']}>{listItems}</ListGroup>
+				<div className={`${'list-group list-group-flush'} ${classes['tracking-list-group']}`}>{listItems}</div>
 				<LastDateRefresh show={this.props.tracking.length > 0} lastDate={this.props.lastDate} click={this.props.doRefresh}/>
 			</div>
 		)

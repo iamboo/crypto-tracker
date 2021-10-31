@@ -1,5 +1,4 @@
 import React from 'react';
-import { Form } from 'react-bootstrap';
 import classes from './Filter.module.css';
 
 const FilterIcon = (props) => {
@@ -33,10 +32,10 @@ export default class FilterComponent extends React.Component{
 
 	render(){
 		return (
-			<Form.Group controlId="cryptoFilter" className={classes['filter-form-group']}>
-				<Form.Control type="text" placeholder="Filter" value={this.state.searchTerm} onChange={this.filterList} autoComplete="off" />
+			<div className={classes['filter-form-group']}>
+				<input type="text" placeholder="Filter" value={this.state.searchTerm} className={'form-control'} onChange={this.filterList} autoComplete="off" />
 				<FilterIcon searchTerm={this.state.searchTerm} click={() => this.filterList(null)} />
-			</Form.Group>
+			</div>
 		)
 	}
 }
