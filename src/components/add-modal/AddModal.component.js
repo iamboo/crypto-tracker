@@ -12,9 +12,6 @@ export default class AddModalComponent extends React.Component{
 		searchTerm: ''
 	}
 
-
-	// myModal = new bootstrap.Modal(document.getElementById('test-modal'));
-
 	constructor(props) {
 		super(props);
 		this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -68,7 +65,7 @@ export default class AddModalComponent extends React.Component{
 	}
 
 	modalClick(event){
-		if(event.target === this.modalRef.current){
+		if(event && event.target === this.modalRef.current){
 			this.handleCloseModal();
 		}
 	}
